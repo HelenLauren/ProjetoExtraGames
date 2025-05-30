@@ -4,8 +4,8 @@
 #pip install flask flask-cors mysql-connector-python
 #talvez precise instalar = pip install flask flask-cors mysql-connector-python python-dotenv
 
-from flask import Flask, request, jsonify
-from flask_corps import CORS
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from db import get_connection
 import os
 from dotenv import load_dotenv
@@ -22,9 +22,10 @@ CORS(app)
 #def hello_world():
 #  return "<p>Hello, World!</p>"
 
+
 @app.route("/")
 def inicial():
-    return redirect(url for ('listar_usuarios'))
+    return redirect(url_for ('listar_usuarios'))
 
 @app.route('/usuarios', methods=['GET'])
 def listar_usuarios():
@@ -56,7 +57,7 @@ def criar_usuario():
     conn = None
     cursor = None
     try:
-        data = request.jsonify
+        data = request.get_json()
         conn = get_connection()
         cursor = conn.cursor()
 
@@ -93,7 +94,7 @@ def atualizar_usuario(id):
     conn = None
     cursor = None
     try:
-        data = request.jsonify
+        data = request.get_json()
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute(

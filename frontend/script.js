@@ -36,12 +36,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     try{
       const method = editId ? 'PUT' : 'POST';
       const url = editId
-        ? `http://localhost:5000/usuarios/$(editId)`
+        ? `http://localhost:5000/usuarios/${editId}`
         : 'http://localhost:5000/usuarios';
 
       const response = await fetch(url, {
         method,
-        headers: {'Content-Type': 'apllication/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           nome: nomeInput.value,
           email: emailInput.value
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
       if (!response.ok) throw new Error('Erro ao salvar usuário');
 
-      form.requestFullscreen();
+      form.reset();
       editId = null;
       await carregarUsuarios();
     } catch (err) {
@@ -59,13 +59,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
       }
   });
 
-  window.deletarUsuario = async (id) => {
+  window.editarUsuario = (id, nome, email) => {
     nomeInput.value = nome;
     emailInput.value = email;
     editId = id;
   };
 
-  window.deletaeUsuario = async (id) => {
+  window.deletarUsuario = async (id) => {
     if (!confirm('Tem certeza que deseja excluir este usuário?')) return;
 
     try {
