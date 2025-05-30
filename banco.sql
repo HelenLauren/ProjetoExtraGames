@@ -32,7 +32,7 @@ INSERT INTO perfis (id, descricao)
 VALUES (1, 'Administrador');
 
 INSERT INTO usuarios (id, nome, email)
-VALUES (1, 'Helen', 'helen@helen.com');
+VALUES (1, 'Admin', 'admin@admin.com');
   
 INSERT INTO usuario_perfil (usuario_id, perfil_id)
 VALUES (1, 1);
@@ -41,7 +41,7 @@ INSERT INTO perfis (id, descricao)
 VALUES (2, 'Leitor');
 
 INSERT INTO usuarios (id, nome, email)
-VALUES (2, 'Helennn', 'helen@gmail.com');
+VALUES (2, 'User', 'usuario@gmail.com');
 
 INSERT INTO usuario_perfil (usuario_id, perfil_id)
 VALUES (2, 2);
